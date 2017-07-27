@@ -1,0 +1,79 @@
+#####################
+## MANUAL COMMANDS ##
+#####################
+
+## Login to new server:
+ssh __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__@__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_SERVER_IP__
+
+## Monitor cloud-init script progress
+tail -fn+1 /var/log/cloud-init-output.log
+
+## You can view better-looking logs once grc is installed
+grc tail -fn+1 /var/log/cloud-init-output.log
+
+## Change passwords
+sudo passwd root
+sudo passwd __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && source ~/.bashrc && nvm install 8 && nvm alias default 8 && nvm use 8 && source ~/.bashrc && npm install -g npm && npm install -g pm2
+
+## Setup ssh keys
+ssh-keygen -t rsa -b 4096 -C "__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__"
+cat ~/.ssh/id_rsa.pub
+## Upload to GitHub
+
+## Setup postgres
+# Add ENV variables to .bashrc
+# Add ~/.pgpass (which is a stupid horrible idea)
+sudo -u postgres psql
+# \password
+# (set password)
+# \q
+# (quit psql)
+
+## Install and configure sendmail
+sudo apt install -yq sendmail sendmail-bin
+# Configure with existing? Y
+# Configure with existing? Y
+# Reload? Y
+sudo sendmailconfig
+
+## Install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && chsh -s /bin/zsh
+
+## Download node repo
+cd ~
+git clone __REPLACE_THIS_TEXT_WITH_YOUR_REPO__
+## Run db scripts
+
+## Reboot the system
+sudo reboot
+
+## Run rootkit hunter
+sudo rkhunter --checkall --skip-keypress
+
+## Run check rootkit
+sudo chkrootkit
+
+## Run lynis security audit
+sudo lynis audit system --quick
+
+## UPDATE DNS WITH HOSTNAME DOMAIN FOR SERVER
+## Create the hostname
+lsattr /etc/hostname && sudo chattr -i /etc/hostname
+sudo sh -c "echo '__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_SERVER_DOMAIN_NAME__' > /etc/hostname"
+sudo hostname -F /etc/hostname
+sudo chattr +i /etc/hostname
+
+################################################################################
+################################################################################
+
+#############################
+## PLACEHOLDERS TO REPLACE ##
+#############################
+## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_SERVER_IP__ - the IP address Digital Ocean assigned to your server
+## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__ - the username of the primary admin user that will be created on the server (e.g. dane)
+## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__ - the email address of the primary admin user
+## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ - the domain for your website that will be hosted by nginx (e.g. thegreatsunra.com)
+## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_SERVER_DOMAIN_NAME__ - the domain for your server (e.g. swearengen.thegreatsunra.com)
+## __REPLACE_THIS_TEXT_WITH_YOUR_REPO__ - The Git repo for your Node app
