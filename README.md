@@ -1,6 +1,6 @@
-# lemp-cloud-init
+# lpn-cloud-init
 
-> Spin up a new Ubuntu, Nginx, MariaDB, PHP server on Digital Ocean
+> Spin up a new Linux/Ubuntu, Postgres, Node server on Digital Ocean
 
 ### Notes
 
