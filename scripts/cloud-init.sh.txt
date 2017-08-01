@@ -170,20 +170,16 @@ runcmd:
 ## Add custom logging rules for psad right above the final commit line:
   - perl -0777 -i.original -pe "s@# don\'t delete the \'COMMIT\' line or these rules won\'t be processed\nCOMMIT@# custom logging directives for psad\n-A INPUT -j LOG\n-A FORWARD -j LOG\n\n# don\'t delete the \'COMMIT\' line or these rules won\'t be processed\nCOMMIT@igs" /etc/ufw/before.rules
   - perl -0777 -i.original -pe "s@# don\'t delete the \'COMMIT\' line or these rules won\'t be processed\nCOMMIT@# custom logging directives for psad\n-A INPUT -j LOG\n-A FORWARD -j LOG\n\n# don\'t delete the \'COMMIT\' line or these rules won\'t be processed\nCOMMIT@igs" /etc/ufw/before6.rules
-
 ## Allow SSH on the default ports:
   - ufw allow ssh
-## Allow Node app port
-  - ufw allow 5000/tcp
-
 ## Deny requests on the default SSH ports:
 #  - ufw deny ssh
 ## Allow requests on updated SSH port:
 #  - ufw allow 4444/tcp
 ## Allow requests on the http port:
-#  - ufw allow http
+  - ufw allow http
 ## Allow requests on the https port:
-#  - ufw allow https
+  - ufw allow https
 ## Allow nginx over HTTP:
 #  - ufw allow 'Nginx HTTP'
 ## Allow nginx over HTTPS:
