@@ -1,6 +1,6 @@
 # the ip and port on which your node server is running
 upstream app___domain.tld__ {
-    server                  127.0.0.1:3000;
+    server                  127.0.0.1:__port__;
     keepalive               8;
 }
 
