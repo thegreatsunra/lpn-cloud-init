@@ -298,8 +298,6 @@ runcmd:
   - curl https://raw.githubusercontent.com/thegreatsunra/lpn-cloud-init/develop/templates/etc/nginx/sites-available/domain.tld.txt -o /etc/nginx/sites-available/__domain.tld__
 ## Symlink all server block sites-available definition files in the sites-enabled folder:
   - ln -s /etc/nginx/sites-available/__domain.tld__ /etc/nginx/sites-enabled/
-## Change owner of public web server files to default user:
-  - chown -R __username__:__username__ /home/__username__/www/
 
 ################
 ## NGINX.CONF ##
