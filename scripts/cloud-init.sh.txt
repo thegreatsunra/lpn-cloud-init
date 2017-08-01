@@ -285,6 +285,45 @@ runcmd:
   - apt update -yq
   - DEBIAN_FRONTEND=noninteractive apt install -yq postgresql-9.6 postgresql-contrib-9.6
 
+
+#####################
+## SITES-AVAILABLE ##
+#####################
+  - printf '\n\n=======\n'
+  - echo 'CONFIGURING SITES-AVAILABLE'
+  - printf '=======\n\n'
+## Add the sites-available and sites-enabled folders because the nginx mainline doesn't have them
+  - mkdir /etc/nginx/sites-available /etc/nginx/sites-enabled
+## Grab our nginx sites-available config files off GitHub Gist and make 'em
+  - curl https://raw.githubusercontent.com/thegreatsunra/lpn-cloud-init/develop/templates/etc/nginx/sites-available/domain.tld.txt -o /etc/nginx/sites-available/__domain.tld__
+## Symlink all server block sites-available definition files in the sites-enabled folder:
+  - ln -s /etc/nginx/sites-available/__domain.tld__ /etc/nginx/sites-enabled/
+## Change owner of public web server files to default user:
+  - chown -R __username__:__username__ /home/__username__/www/
+
+################
+## NGINX.CONF ##
+################
+  - printf '\n\n=======\n'
+  - echo 'EDITING NGINX.CONF'
+  - printf '=======\n\n'
+  - printf '\n\n=======\n'
+  - echo 'PROCESSOR COUNT:'
+  - grep processor /proc/cpuinfo | wc -l
+  - printf '=======\n\n'
+  - printf '\n\n=======\n'
+  - echo 'OPEN FILE LIMIT:'
+  - ulimit -n
+  - printf '=======\n\n'
+## Back up our original nginx configuration file:
+  - mv /etc/nginx/nginx.conf /etc/nginx/nginx.original
+## Grab our new nginx configuration file:
+  - curl https://raw.githubusercontent.com/thegreatsunra/lpn-cloud-init/develop/templates/etc/nginx/nginx.conf.txt -o /etc/nginx/nginx.conf
+## Test our nginx config
+  - nginx -t
+## Start nginx:
+  - service nginx start
+
 #####################
 ## INSTALL UPDATES ##
 #####################
