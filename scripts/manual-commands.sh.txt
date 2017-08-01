@@ -62,7 +62,7 @@ git clone __REPLACE_THIS_TEXT_WITH_YOUR_REPO__
 
 ## Run certbot for all domains:
 ## (this should be done only after we have updated the site's DNS to point to the new IP address)
-sudo certbot certonly --email __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__ --agree-tos --webroot -w /home/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/www/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__/public -d __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
+sudo certbot certonly --email __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__ --agree-tos --webroot -w /home/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/__REPLACE_THIS_TEXT_WITH_YOUR_NODE_APP__/static -d __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
 
 ## Activate HTTPS
 sudo sed -i -e 's/# listen 443 ssl http2;/listen 443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen 443 ssl http2;/listen 443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen \[::\]:443 ssl http2;/listen \[::\]:443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen \[::\]:443 ssl http2;/listen \[::\]:443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate /ssl_certificate /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate_key /ssl_certificate_key /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate /ssl_certificate /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate_key /ssl_certificate_key /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo service nginx restart
@@ -98,3 +98,4 @@ sudo chattr +i /etc/hostname
 ## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ - the domain for your website that will be hosted by nginx (e.g. thegreatsunra.com)
 ## __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_SERVER_DOMAIN_NAME__ - the domain for your server (e.g. swearengen.thegreatsunra.com)
 ## __REPLACE_THIS_TEXT_WITH_YOUR_REPO__ - The Git repo for your Node app
+## __REPLACE_THIS_TEXT_WITH_YOUR_NODE_APP__ - The folder name of your cloned Node app
