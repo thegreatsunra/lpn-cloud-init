@@ -27,6 +27,12 @@ sudo sed -i -e 's/__username__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/'
 
 sudo sed -i -e 's/__username__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
 sudo sed -i -e 's/__domain.tld__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
+
+## Test the new nginx config
+sudo nginx -t
+## Start nginx
+sudo service nginx start
+
 ## Setup postgres
 # Add ENV variables to .bashrc
 # Add ~/.pgpass (which is a stupid horrible idea)
@@ -46,10 +52,14 @@ sudo sendmailconfig
 ## Install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && chsh -s /bin/zsh
 
+## UPDATE DNS FOR SITE DOMAINS TO IP ADDRESS OF NEW SERVER
+
 ## Download node repo
 cd ~
 git clone __REPLACE_THIS_TEXT_WITH_YOUR_REPO__
-## Run db scripts
+
+## Run db scripts in node repo
+
 
 ## Reboot the system
 sudo reboot
