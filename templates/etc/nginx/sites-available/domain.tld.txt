@@ -19,8 +19,8 @@ server {
 
     server_name             __domain.tld__;
 
-    access_log              /var/log/nginx/__domain.tld__/access.log;
-    error_log               /var/log/nginx/__domain.tld__/error.log;
+    access_log              /var/log/nginx/__domain.tld__.access.log;
+    error_log               /var/log/nginx/__domain.tld__.error.log;
 
     # pass the request to the node.js server with the correct headers
     location / {
