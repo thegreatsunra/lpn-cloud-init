@@ -1,14 +1,26 @@
 # the ip and port on which your node server is running
-upstream app_yourdomain {
+upstream app___domain.tld__ {
     server                  127.0.0.1:3000;
     keepalive               8;
 }
 
 # the nginx server instance
 server {
-    listen                  0.0.0.0:80;
-    server_name             yourdomain.tld yourdomain;
-    access_log              /var/log/nginx/yourdomain.log;
+    listen 80;
+    listen [::]:80;
+    
+    ## UNCOMMENT ONCE SSL IS ENABLED
+    # listen 443 ssl http2;
+    # listen [::]:443 ssl http2;
+
+    ## UNCOMMENT ONCE SSL IS ENABLED
+    # ssl_certificate /etc/letsencrypt/live/__domain.tld__/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/__domain.tld__/privkey.pem;
+
+    server_name             __domain.tld__;
+
+    access_log              /var/log/nginx/__domain.tld__/access.log;
+    error_log               /var/log/nginx/__domain.tld__/error.log;
 
     # pass the request to the node.js server with the correct headers
     location / {
@@ -22,7 +34,7 @@ server {
         proxy_set_header    Upgrade $http_upgrade;
         proxy_set_header    Connection "upgrade";
 
-        proxy_pass          http://app_yourdomain/;
+        proxy_pass          http://app___domain.tld__/;
         proxy_redirect      off;
     }
 }
