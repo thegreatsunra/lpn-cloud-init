@@ -60,6 +60,12 @@ git clone __REPLACE_THIS_TEXT_WITH_YOUR_REPO__
 
 ## Run db scripts in node repo
 
+## Run certbot for all domains:
+## (this should be done only after we have updated the site's DNS to point to the new IP address)
+sudo certbot certonly --email __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__ --agree-tos --webroot -w /home/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/www/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__/public -d __REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
+
+## Activate HTTPS
+sudo sed -i -e 's/# listen 443 ssl http2;/listen 443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen 443 ssl http2;/listen 443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen \[::\]:443 ssl http2;/listen \[::\]:443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# listen \[::\]:443 ssl http2;/listen \[::\]:443 ssl http2;/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate /ssl_certificate /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate_key /ssl_certificate_key /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate /ssl_certificate /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo sed -i -e 's/# ssl_certificate_key /ssl_certificate_key /' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__ && sudo service nginx restart
 
 ## Reboot the system
 sudo reboot
