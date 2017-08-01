@@ -22,6 +22,11 @@ ssh-keygen -t rsa -b 4096 -C "__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_EMAIL__"
 cat ~/.ssh/id_rsa.pub
 ## Upload to GitHub
 
+## Change the placeholder user value in /etc/nginx/nginx.conf to your username
+sudo sed -i -e 's/__username__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/' /etc/nginx/nginx.conf
+
+sudo sed -i -e 's/__username__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_USERNAME__/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
+sudo sed -i -e 's/__domain.tld__/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__/' /etc/nginx/sites-available/__REPLACE_THIS_TEXT_WITH_YOUR_ACTUAL_DOMAIN__
 ## Setup postgres
 # Add ENV variables to .bashrc
 # Add ~/.pgpass (which is a stupid horrible idea)
